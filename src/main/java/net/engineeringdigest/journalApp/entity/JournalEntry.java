@@ -15,6 +15,7 @@ import java.util.Date;
 
 // or // use Lombok's @Data annotation which combines @Getter, @Setter, @ToString, @EqualsAndHashCode, and @RequiredArgsConstructor
 @Data
+@NoArgsConstructor
 public class JournalEntry {
 
     @Id//primary key
