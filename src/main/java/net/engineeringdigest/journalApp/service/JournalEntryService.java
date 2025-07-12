@@ -35,7 +35,7 @@ public class JournalEntryService {
 
         }
 
-    }
+   }
 
     //overloaded method for one arg
     public void saveJournalEntry(JournalEntry journalEntry){
