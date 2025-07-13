@@ -6,8 +6,11 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Security;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,13 +26,13 @@ public class UserController {
         return userService.getAll();
     }
 
-    @PostMapping
-    public void createUser(@RequestBody User user){
-        userService.saveEntry(user);
-    }
 
-    @PutMapping("/userName/{userName}")//searching by userName
-    public ResponseEntity<User> updateUser(@RequestBody User newUser, @PathVariable String userName){
+    @PutMapping
+    public ResponseEntity<User> updateUser(@RequestBody User newUser){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String userName = authentication.getName();
+
         User findUser = userService.findByUserName(userName);
         if(findUser != null){
             findUser.setUserName(newUser.getUserName());

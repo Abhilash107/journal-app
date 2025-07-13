@@ -28,5 +28,7 @@ public class User {
     @DBRef // MongoDB reference to JournalEntry documents (similar to ObjectId reference in Node.js)
     private List<JournalEntry> journalEntries = new ArrayList<>();
 
+    private List<String> roles;
+
 
 }
